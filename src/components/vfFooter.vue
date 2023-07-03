@@ -6,7 +6,9 @@ export default {
 </script>
 
 <template>
-  <h1>footer</h1>
+  <footer class="bg-dark">
+    <h3>footer</h3>
+  </footer>
 </template>
 
 <style>

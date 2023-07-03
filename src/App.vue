@@ -1,18 +1,29 @@
 <script>
+  import axios from 'axios';
   import vfHeader from './components/vfHeader.vue';
-  import vfMain from './components/vfMain.vue';
   import vfFooter from './components/vfFooter.vue';
+  import { store } from "./data/store";
 
   export default{
     name: 'App',
     components: {
       vfHeader,
-      vfMain,
       vfFooter
+    },
+    methods: {
+      getApi(){
+        axios.get('http://127.0.0.1:8000/api/projects')
+          .then(result => {
+            store.resultArray = result.data
+        })
+      }
+    },
+    mounted() {
+      this.getApi()
     },
     data(){
       return {
-
+        store
       }
     }
   }
@@ -21,11 +32,12 @@
 <template>
 
 <vfHeader />
-<vfMain />
+<div class="container my-5">
+  <router-view></router-view>
+</div>
 <vfFooter />
-
 </template>
 
-<style scoped>
-
+<style>
+@import './scss/main.scss';
 </style>
